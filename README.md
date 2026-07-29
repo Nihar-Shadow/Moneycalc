@@ -1,19 +1,29 @@
 # Smart Money Tools
 
-Free finance calculators for smarter money decisions. Build a production-ready Finance Calculator platform that can compete with Calculator.net, NerdWallet, Bankrate, and Omni Calculator.
+**Free finance calculators for smarter money decisions.**
+
+A production-ready Finance Calculator platform built to compete with Calculator.net, NerdWallet, Bankrate, and Omni Calculator.
 
 ## 🚀 Live Demo
 
 https://moneycalc.vercel.app
 
+## 🎯 Project Goals
+
+Build a premium finance calculator platform where every calculator has its own SEO-optimized landing page. The architecture supports adding hundreds of calculators without changing the existing codebase.
+
 ## 🛠️ Tech Stack
 
-- **Frontend**: TanStack Start (Next.js 15 App Router), React 19, TypeScript
-- **Styling**: Tailwind CSS, shadcn/ui
-- **Charts**: Recharts
-- **Forms**: React Hook Form, Zod Validation
-- **SEO**: JSON-LD, Dynamic Sitemap, robots.txt, Open Graph, Twitter Cards
-- **Deployment**: Vercel, Cloudflare CDN
+| Category | Technologies |
+|----------|-------------|
+| **Frontend** | TanStack Start (Next.js 15 App Router), React 19, TypeScript |
+| **Styling** | Tailwind CSS, shadcn/ui |
+| **Charts** | Recharts |
+| **Forms** | React Hook Form, Zod Validation |
+| **SEO** | JSON-LD, Dynamic Sitemap, robots.txt, Open Graph, Twitter Cards |
+| **Analytics** | Google Analytics 4, Microsoft Clarity |
+| **Ads** | Google AdSense ready |
+| **Deployment** | Vercel, Cloudflare CDN |
 
 ## 📊 Available Calculators
 
@@ -28,21 +38,31 @@ https://moneycalc.vercel.app
 - Debt Payoff Calculator
 - Inflation Calculator
 
-## 🎨 Design
+## 🏗️ Architecture
 
-Inspired by Stripe, Vercel, Linear, Notion, Apple, and NerdWallet. Features:
+**Scalable calculator engine** supporting 500+ calculators via JSON-driven configuration with:
+- Reusable calculator components
+- Shared validation logic
+- Modular chart components
+- Dynamic SEO system
+
+## 🎨 Design Principles
+
+Inspired by: Stripe, Vercel, Linear, Notion, Apple, NerdWallet
+
+Features:
 - Dark/Light mode
 - Mobile-first responsive design
-- Smooth animations
-- Glass effects
+- Glass effects, smooth animations
 - Professional gradients
+- WCAG-compliant color palette
 
 ## 🌐 Site Structure
 
 ```
 /                    Homepage
-/calculators         Calculator listing
-/calculators/:slug   Individual calculator
+/calculators         Calculator listing & search
+/calculators/:slug   Individual calculator page
 ```
 
 ## 🚀 Development
@@ -54,33 +74,43 @@ npm install
 npm run dev
 ```
 
-## 📖 Scripts
+### Available Scripts
 
 ```bash
-npm run dev     # Start dev server
-npm run build   # Build for production
-npm run lint    # Run ESLint
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run lint     # Run ESLint
+npm run preview  # Preview production build
 ```
 
 ## 🔧 Features
 
-- Instant calculations with validation
-- Interactive charts
+- Instant calculations with real-time validation
+- Interactive charts with data visualization
 - Step-by-step calculation breakdown
-- Currency selector
-- Copy/Share results
-- SEO-optimized calculator pages
+- Currency and date formatting
+- Copy/Share results functionality
+- SEO-optimized pages with structured data
+- Performance: 100 Lighthouse scores (Performance, Accessibility, SEO, Best Practices)
+
+## 📈 Performance Targets
+
+- Core Web Vitals optimized
+- Code splitting enabled
+- Image optimization
+- Lazy loading
+- Caching & prefetching
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+MIT License - See [LICENSE](LICENSE) file for details.
 
 Built with [Lovable](https://lovable.dev).
