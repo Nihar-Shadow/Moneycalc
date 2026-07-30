@@ -14,16 +14,16 @@ Build a premium finance calculator platform where every calculator has its own S
 
 ## 🛠️ Tech Stack
 
-| Category | Technologies |
-|----------|-------------|
-| **Frontend** | TanStack Start (Next.js 15 App Router), React 19, TypeScript |
-| **Styling** | Tailwind CSS, shadcn/ui |
-| **Charts** | Recharts |
-| **Forms** | React Hook Form, Zod Validation |
-| **SEO** | JSON-LD, Dynamic Sitemap, robots.txt, Open Graph, Twitter Cards |
-| **Analytics** | Google Analytics 4, Microsoft Clarity |
-| **Ads** | Google AdSense ready |
-| **Deployment** | Vercel, Cloudflare CDN |
+| Category       | Technologies                                                    |
+| -------------- | --------------------------------------------------------------- |
+| **Frontend**   | TanStack Start (Next.js 15 App Router), React 19, TypeScript    |
+| **Styling**    | Tailwind CSS, shadcn/ui                                         |
+| **Charts**     | Recharts                                                        |
+| **Forms**      | React Hook Form, Zod Validation                                 |
+| **SEO**        | JSON-LD, Dynamic Sitemap, robots.txt, Open Graph, Twitter Cards |
+| **Analytics**  | Google Analytics 4, Microsoft Clarity                           |
+| **Ads**        | Google AdSense ready                                            |
+| **Deployment** | Vercel, Cloudflare CDN                                          |
 
 ## 📊 Available Calculators
 
@@ -41,6 +41,7 @@ Build a premium finance calculator platform where every calculator has its own S
 ## 🏗️ Architecture
 
 **Scalable calculator engine** supporting 500+ calculators via JSON-driven configuration with:
+
 - Reusable calculator components
 - Shared validation logic
 - Modular chart components
@@ -51,6 +52,7 @@ Build a premium finance calculator platform where every calculator has its own S
 Inspired by: Stripe, Vercel, Linear, Notion, Apple, NerdWallet
 
 Features:
+
 - Dark/Light mode
 - Mobile-first responsive design
 - Glass effects, smooth animations

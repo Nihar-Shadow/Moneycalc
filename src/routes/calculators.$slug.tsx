@@ -100,15 +100,13 @@ function CalculatorPage() {
       <article className="prose-content mt-10 space-y-12">
         <section>
           <h2 className="text-2xl font-bold">How this calculator works</h2>
-          <p className="mt-3 text-muted-foreground">{calculator.content.howWorks || calculator.content.what}</p>
+          <p className="mt-3 text-muted-foreground">
+            {calculator.content.howWorks || calculator.content.what}
+          </p>
           <h3 className="mt-6 text-lg font-semibold">When to use it</h3>
-          <p className="mt-2 text-muted-foreground">
-            {getUseCaseText(calculator.name)}
-          </p>
+          <p className="mt-2 text-muted-foreground">{getUseCaseText(calculator.name)}</p>
           <h3 className="mt-4 text-lg font-semibold">Who should use it</h3>
-          <p className="mt-2 text-muted-foreground">
-            {getWhoShouldUseText(calculator.name)}
-          </p>
+          <p className="mt-2 text-muted-foreground">{getWhoShouldUseText(calculator.name)}</p>
         </section>
 
         <section>
@@ -213,9 +211,12 @@ function CalculatorPage() {
           <p className="mt-3 text-muted-foreground">
             {calculator.content.lastUpdated ? (
               <>
-                <span className="font-medium">Date:</span> {calculator.content.lastUpdated.date} &bull;
-                <span className="font-medium ml-3">Method:</span> {calculator.content.lastUpdated.method} &bull;
-                <span className="font-medium ml-3">Version:</span> {calculator.content.lastUpdated.version}
+                <span className="font-medium">Date:</span> {calculator.content.lastUpdated.date}{" "}
+                &bull;
+                <span className="font-medium ml-3">Method:</span>{" "}
+                {calculator.content.lastUpdated.method} &bull;
+                <span className="font-medium ml-3">Version:</span>{" "}
+                {calculator.content.lastUpdated.version}
               </>
             ) : (
               "Calculation method: Standard financial formulas"
@@ -243,25 +244,41 @@ function CalculatorPage() {
 }
 
 function getUseCaseText(name: string): string {
-  if (name.includes("Mortgage")) return "Use this calculator when you're house hunting or comparing mortgage offers to understand your true monthly housing costs.";
-  if (name.includes("Loan")) return "Use this calculator when comparing loan offers or testing different loan terms before committing to a purchase.";
-  if (name.includes("Investment")) return "Use this calculator to project long-term investment growth and understand the impact of fees and inflation on your returns.";
-  if (name.includes("Savings")) return "Use this calculator to set realistic savings goals and compare high-yield savings accounts.";
-  if (name.includes("Retirement")) return "Use this calculator to check if you're on track for retirement and to test different contribution rates.";
-  if (name.includes("Inflation")) return "Use this calculator to understand how inflation erodes purchasing power over time.";
-  if (name.includes("Credit Card")) return "Use this calculator to plan your debt payoff strategy and test different payment amounts.";
-  if (name.includes("Debt")) return "Use this calculator to create an accelerated debt payoff plan and quantify potential interest savings.";
+  if (name.includes("Mortgage"))
+    return "Use this calculator when you're house hunting or comparing mortgage offers to understand your true monthly housing costs.";
+  if (name.includes("Loan"))
+    return "Use this calculator when comparing loan offers or testing different loan terms before committing to a purchase.";
+  if (name.includes("Investment"))
+    return "Use this calculator to project long-term investment growth and understand the impact of fees and inflation on your returns.";
+  if (name.includes("Savings"))
+    return "Use this calculator to set realistic savings goals and compare high-yield savings accounts.";
+  if (name.includes("Retirement"))
+    return "Use this calculator to check if you're on track for retirement and to test different contribution rates.";
+  if (name.includes("Inflation"))
+    return "Use this calculator to understand how inflation erodes purchasing power over time.";
+  if (name.includes("Credit Card"))
+    return "Use this calculator to plan your debt payoff strategy and test different payment amounts.";
+  if (name.includes("Debt"))
+    return "Use this calculator to create an accelerated debt payoff plan and quantify potential interest savings.";
   return "Use this calculator to analyze your financial scenario.";
 }
 
 function getWhoShouldUseText(name: string): string {
-  if (name.includes("Mortgage")) return "First-time homebuyers, current homeowners considering refinancing, and anyone comparing mortgage offers.";
-  if (name.includes("Loan")) return "Anyone considering borrowing for personal, business, or educational expenses.";
-  if (name.includes("Investment")) return "Long-term investors, those planning for major purchases, and anyone comparing investment options.";
-  if (name.includes("Savings")) return "People saving for specific goals like vacations, emergencies, or down payments.";
-  if (name.includes("Retirement")) return "Anyone planning for retirement, especially those in their 20s through 50s.";
-  if (name.includes("Inflation")) return "Anyone managing long-term financial goals or fixed-income investments.";
-  if (name.includes("Credit Card")) return "Credit card holders trying to pay off balances efficiently.";
-  if (name.includes("Debt")) return "Anyone carrying consumer debt looking to accelerate their payoff strategy.";
+  if (name.includes("Mortgage"))
+    return "First-time homebuyers, current homeowners considering refinancing, and anyone comparing mortgage offers.";
+  if (name.includes("Loan"))
+    return "Anyone considering borrowing for personal, business, or educational expenses.";
+  if (name.includes("Investment"))
+    return "Long-term investors, those planning for major purchases, and anyone comparing investment options.";
+  if (name.includes("Savings"))
+    return "People saving for specific goals like vacations, emergencies, or down payments.";
+  if (name.includes("Retirement"))
+    return "Anyone planning for retirement, especially those in their 20s through 50s.";
+  if (name.includes("Inflation"))
+    return "Anyone managing long-term financial goals or fixed-income investments.";
+  if (name.includes("Credit Card"))
+    return "Credit card holders trying to pay off balances efficiently.";
+  if (name.includes("Debt"))
+    return "Anyone carrying consumer debt looking to accelerate their payoff strategy.";
   return "Anyone looking to make informed financial decisions.";
 }
