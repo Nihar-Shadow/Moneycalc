@@ -18,7 +18,7 @@ export function organizationSchema() {
     slogan: SITE.tagline,
     url: SITE.url,
     sameAs: [],
-    logo: `${SITE.url}/favicon.ico`,
+    logo: `${SITE.url}/logo.svg`,
   };
 }
 
