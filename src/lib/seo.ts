@@ -4,7 +4,7 @@ export const SITE = {
   description:
     "MoneyCalc offers free, fast and accurate finance calculators for loans, mortgages, investments, retirement, savings and debt payoff.",
   url: "https://moneycalc.com",
-  image: "https://moneycalc.com/og-image.png",
+  image: "https://moneycalc.com/og-image.svg",
   imageWidth: 1200,
   imageHeight: 630,
 };
