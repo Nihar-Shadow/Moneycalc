@@ -140,16 +140,26 @@ export function generateTitle(name: string): string {
 
 export function generateDescription(name: string): string {
   const descriptions: Record<string, string> = {
-    "Mortgage Calculator": "Calculate your monthly mortgage payment including principal, interest, taxes, and insurance. Plan your home purchase with accurate estimates. Try it now!",
-    "Loan Calculator": "Calculate loan payments and total interest costs for personal, auto, or business loans. Compare different terms and rates instantly. Free accurate calculator.",
-    "Compound Interest Calculator": "Project your investment growth with compound interest. Calculate how regular contributions grow over time. Accurate financial projection tool.",
-    "Investment Calculator": "Project investment growth and calculate inflation-adjusted returns. See how fees impact your portfolio. Plan your financial future.",
-    "Savings Calculator": "Calculate savings growth and time to reach goals. Compare high-yield accounts. Track your progress to financial targets.",
-    "Retirement Calculator": "Project your retirement nest egg and sustainable income. Test different contribution rates. Plan for financial security.",
-    "Inflation Calculator": "Calculate purchasing power changes over time. See how inflation affects your savings and goals. Make informed financial decisions.",
-    "Credit Card Payoff Calculator": "Plan your credit card payoff strategy. Calculate time to debt freedom and interest savings. Test different payment amounts.",
-    "Debt Payoff Calculator": "Create an accelerated debt payoff plan. Compare current vs. aggressive strategies. Quantify interest savings. Get out of debt faster.",
-    "Auto Loan Calculator": "Calculate car loan payments including tax and fees. Compare financing options. Plan your next vehicle purchase.",
+    "Mortgage Calculator":
+      "Calculate your monthly mortgage payment including principal, interest, taxes, and insurance. Plan your home purchase with accurate estimates. Try it now!",
+    "Loan Calculator":
+      "Calculate loan payments and total interest costs for personal, auto, or business loans. Compare different terms and rates instantly. Free accurate calculator.",
+    "Compound Interest Calculator":
+      "Project your investment growth with compound interest. Calculate how regular contributions grow over time. Accurate financial projection tool.",
+    "Investment Calculator":
+      "Project investment growth and calculate inflation-adjusted returns. See how fees impact your portfolio. Plan your financial future.",
+    "Savings Calculator":
+      "Calculate savings growth and time to reach goals. Compare high-yield accounts. Track your progress to financial targets.",
+    "Retirement Calculator":
+      "Project your retirement nest egg and sustainable income. Test different contribution rates. Plan for financial security.",
+    "Inflation Calculator":
+      "Calculate purchasing power changes over time. See how inflation affects your savings and goals. Make informed financial decisions.",
+    "Credit Card Payoff Calculator":
+      "Plan your credit card payoff strategy. Calculate time to debt freedom and interest savings. Test different payment amounts.",
+    "Debt Payoff Calculator":
+      "Create an accelerated debt payoff plan. Compare current vs. aggressive strategies. Quantify interest savings. Get out of debt faster.",
+    "Auto Loan Calculator":
+      "Calculate car loan payments including tax and fees. Compare financing options. Plan your next vehicle purchase.",
   };
   return descriptions[name] || SITE.description;
 }
@@ -173,7 +183,10 @@ export function pageMeta({
   return {
     meta: [
       { title: title.length > 60 ? `${title.substring(0, 57)}...` : title },
-      { name: "description", content: description.length > 160 ? `${description.substring(0, 157)}...` : description },
+      {
+        name: "description",
+        content: description.length > 160 ? `${description.substring(0, 157)}...` : description,
+      },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: type },
