@@ -189,6 +189,32 @@ export const investingCalculators: CalculatorConfig[] = [
         "Fees, taxes and inflation are not deducted.",
         "Contributions are assumed to be perfectly regular.",
       ],
+      howWorks:
+        "The calculator uses the compound interest formula with regular contributions. The first term P(1 + r/n)^(nt) calculates how the initial deposit grows with compound interest. The second term PMT × [((1 + r/n)^(nt) − 1) ÷ (r/n)] calculates how regular contributions grow, assuming each contribution earns interest from the time it's made until the end of the period.",
+      assumptions: [
+        "Interest compounds at the selected frequency (annually, monthly, daily, etc.).",
+        "The annual interest rate remains constant throughout the investment period.",
+        "Monthly contributions are made at the end of each period.",
+        "No additional deposits, withdrawals, or irregular contributions are made.",
+        "No taxes are applied to the returns (tax-sheltered accounts).",
+        "No fees (management, trading, or other) are deducted from the returns.",
+        "Inflation is not factored into the final balance.",
+      ],
+      commonMistakes: [
+        "Using the annual rate instead of the periodic rate when compounding frequency differs from annually.",
+        "Forgetting to adjust for compounding frequency — daily compounding yields more than annual compounding at the same rate.",
+        "Using the wrong formula for regular contributions (treating them like a lump sum).",
+        "Not accounting for the timing of contributions — beginning vs. end of period affects results.",
+        "Using an unrealistically high return rate that doesn't reflect long-term averages.",
+        "Ignoring the impact of inflation on the real value of the final amount.",
+        "Assuming contributions don't earn interest — they compound from day one.",
+        "Comparing results from different calculators with different compounding assumptions.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Compound interest formula with regular contributions",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {
@@ -369,6 +395,35 @@ export const investingCalculators: CalculatorConfig[] = [
         "Capital gains and dividend taxes are excluded.",
         "Does not model rebalancing or changing asset allocation over time.",
       ],
+      howWorks:
+        "The calculator first computes the net return by subtracting fees from the expected return. It then projects the portfolio growth using the compound interest formula with monthly contributions. Separately, it calculates what the portfolio would be worth without fees to show the fee cost. Finally, it discounts the nominal value by the inflation rate to show the real purchasing power.",
+      assumptions: [
+        "The expected annual return is constant throughout the investment period.",
+        "Fund fees (expense ratio) are deducted annually from the return.",
+        "Monthly contributions are made at the end of each month.",
+        "Inflation is constant at the specified rate.",
+        "No taxes (capital gains, dividends, or interest) are applied.",
+        "No additional deposits or withdrawals occur during the period.",
+        "Compounding occurs monthly.",
+        "The portfolio is fully invested with no cash drag.",
+      ],
+      commonMistakes: [
+        "Using the gross return instead of the net return after fees.",
+        "Forgetting that fees compound over time and have a multiplicative effect.",
+        "Not accounting for inflation when interpreting the final number.",
+        "Using an unrealistically high return rate that doesn't reflect long-term averages.",
+        "Ignoring the difference between nominal and real returns.",
+        "Assuming that past performance will continue at the same rate.",
+        "Not understanding that even small differences in fees compound significantly over decades.",
+        "Using annual returns with monthly compounding without adjusting the rate.",
+        "Forgetting that contributions also earn returns from the time they're made.",
+        "Comparing returns without considering tax implications.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Compound interest with net return, fees, and inflation adjustment",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {
@@ -543,6 +598,34 @@ export const investingCalculators: CalculatorConfig[] = [
         "Interest may be taxable depending on your jurisdiction and account type.",
         "Does not account for withdrawals or missed deposits.",
       ],
+      howWorks:
+        "The calculator uses the future value formula for compound interest with regular contributions. The APY (Annual Percentage Yield) already factors in compounding, so we convert it to a monthly rate by dividing by 12. Each monthly deposit is assumed to earn interest for the remaining months until the end of the period.",
+      assumptions: [
+        "The APY (Annual Percentage Yield) remains constant throughout the term.",
+        "Interest compounds monthly (as is standard for savings accounts).",
+        "Monthly deposits are made at regular intervals and earn interest from deposit date.",
+        "No additional deposits, withdrawals, or missed payments occur.",
+        "Interest is taxable unless in a tax-sheltered account.",
+        "The account has no withdrawal penalties or minimum balance requirements.",
+        "No direct deposit bonuses or promotional rates are applied.",
+      ],
+      commonMistakes: [
+        "Using the nominal interest rate instead of the APY, which doesn't account for compounding.",
+        "Forgetting that APY already includes compounding, so don't compound it again manually.",
+        "Not accounting for taxes on interest earnings.",
+        "Assuming savings rates are fixed when they can change with central bank policy.",
+        "Using annual compounding assumptions instead of monthly compounding.",
+        "Not understanding that early deposits earn more interest than late-period deposits.",
+        "Comparing accounts with different compounding frequencies without adjusting.",
+        "Forgetting that FDIC insurance has limits (typically $250,000 per institution).",
+        "Using an interest rate that's too high based on past performance rather than current rates.",
+        "Not considering that inflation erodes the real value of savings over time.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Compound interest formula with monthly contributions using APY",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {
@@ -733,6 +816,36 @@ export const investingCalculators: CalculatorConfig[] = [
         "Uses a flat return rather than modelling market sequence risk.",
         "Tax treatment of withdrawals varies widely by account and country.",
       ],
+      howWorks:
+        "The calculator first determines the number of months until retirement (months between current age and retirement age). It then projects the growth of your current savings plus monthly contributions using the compound interest formula. Finally, it applies the safe withdrawal rate to estimate the annual income the nest egg can sustain. It also calculates the inflation-adjusted value to show what that income will actually buy in today's dollars.",
+      assumptions: [
+        "The expected annual return is constant throughout the accumulation period.",
+        "Monthly contributions are made consistently without interruption.",
+        "The safe withdrawal rate remains constant at the chosen percentage.",
+        "Inflation rates remain constant until retirement and beyond.",
+        "No taxes are applied to the growth or withdrawals (tax-sheltered accounts).",
+        "No changes in contribution amounts due to salary increases.",
+        "No early withdrawals or penalty distributions before retirement.",
+        "Employer matching contributions are included in monthly contributions.",
+        "No required minimum distributions (RMDs) are considered.",
+      ],
+      commonMistakes: [
+        "Using an unrealistically high return rate based on recent bull markets.",
+        "Starting too late and expecting to catch up through higher contributions alone.",
+        "Not including employer matching in the contribution calculation.",
+        "Using a withdrawal rate higher than 4% without considering sequence risk.",
+        "Forgetting that inflation erodes purchasing power over 20-40 year retirement periods.",
+        "Not accounting for required minimum distributions (RMDs) from traditional accounts.",
+        "Assuming Social Security or pension income without adding it to the calculation.",
+        "Not considering health care costs which typically rise faster than general inflation.",
+        "Using a single flat return assumption instead of considering market volatility.",
+        "Not adjusting contributions for salary increases or career changes.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Compound interest projection with safe withdrawal rate analysis",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {
@@ -879,6 +992,33 @@ export const investingCalculators: CalculatorConfig[] = [
         "Personal inflation depends on your own spending basket.",
         "Does not model deflation shocks or currency effects.",
       ],
+      howWorks:
+        "The calculator applies compound interest formulas in both directions. It calculates future value by multiplying the current amount by (1 + inflation rate) raised to the power of years. It calculates present value by dividing the current amount by the same factor. The chart visualises both trajectories on the same graph.",
+      assumptions: [
+        "Inflation is constant at the specified rate throughout the period.",
+        "Purchasing power changes uniformly across all goods and services.",
+        "No changes in tax treatment of inflation-adjusted amounts.",
+        "The currency remains stable (no hyperinflation or deflation scenarios).",
+        "Prices adjust immediately and uniformly with inflation.",
+        "No wage-price spirals or other economic feedback effects are modelled.",
+      ],
+      commonMistakes: [
+        "Using an inflation rate that's too low based on personal experience with stable prices.",
+        "Forgetting that inflation erodes the real value of fixed incomes and savings.",
+        "Not accounting for the fact that different people experience different inflation rates based on spending habits.",
+        "Using historical rates without adjusting for current economic conditions.",
+        "Assuming that a 3% inflation rate means prices increase by exactly 3% each year (they compound).",
+        "Not understanding that nominal values can appear large while real values are much smaller.",
+        "Forgetting to adjust future goals and savings targets for inflation.",
+        "Comparing nominal dollar amounts from different time periods without adjusting for inflation.",
+        "Using the wrong formula (simple vs compound) for inflation calculations.",
+        "Not considering that some assets (real estate, commodities) may hedge against inflation.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Compound interest formulas for future and present value",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {

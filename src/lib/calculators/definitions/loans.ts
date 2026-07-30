@@ -164,6 +164,27 @@ export const loanCalculators: CalculatorConfig[] = [
         "Origination fees, insurance and late charges are not included.",
         "Extra payments are not modelled here — use the debt payoff calculator for that.",
       ],
+      howWorks:
+        "The calculator uses the amortisation formula to compute a fixed monthly payment that pays off the loan in the specified term. Each payment is split: first, interest accrues on the remaining balance; second, the rest reduces the principal. Over time, the interest portion shrinks while the principal portion grows. The balance curve visualises this shift.",
+      assumptions: [
+        "Fixed interest rate for the entire loan term.",
+        "Monthly payment frequency with no skipped payments.",
+        "No prepayment penalties or early repayment charges.",
+        "No additional fees (origination, late fees, etc.).",
+        "Payments are made on time without delay.",
+      ],
+      commonMistakes: [
+        "Using the annual rate instead of the monthly rate in calculations.",
+        "Forgetting to include all fees in the true cost of borrowing.",
+        "Choosing an excessively long term to lower the payment, then paying more interest than expected.",
+        "Comparing loans with different terms without adjusting for the payment frequency.",
+        "Ignoring the impact of prepayment options or penalties.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Standard amortisation formula with monthly compounding",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {
@@ -362,6 +383,29 @@ export const loanCalculators: CalculatorConfig[] = [
         "Closing costs, maintenance and utilities sit outside the calculation.",
         "Adjustable-rate mortgages will diverge once the fixed period ends.",
       ],
+      howWorks:
+        "This calculator first computes the principal and interest payment using the amortisation formula. It then adds the monthly property tax (annual tax rate × home price ÷ 12), monthly home insurance (annual insurance ÷ 12), and any HOA dues. The total is displayed as the 'all-in' monthly payment.",
+      assumptions: [
+        "Fixed mortgage interest rate for the entire loan term.",
+        "Property tax rate remains constant over the loan term.",
+        "Home insurance premiums do not change annually.",
+        "HOA fees are fixed and known.",
+        "PMI is not included for down payments under 20%.",
+        "No additional closing costs, private mortgage insurance, or loan origination fees.",
+      ],
+      commonMistakes: [
+        "Focusing only on the P&I payment and ignoring property taxes and insurance.",
+        "Using the annual property tax rate directly instead of dividing by 12 for monthly.",
+        "Forgetting that taxes and insurance may increase annually.",
+        "Not accounting for HOA fees if applicable.",
+        "Assuming the quoted rate is the APR without considering the true cost.",
+        "Using the down payment percentage incorrectly in the calculation.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Standard amortisation formula with PITI components",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {
@@ -528,6 +572,28 @@ export const loanCalculators: CalculatorConfig[] = [
         "Manufacturer rebates and subsidised APR offers need to be entered manually.",
         "Depreciation and running costs are not part of the payment estimate.",
       ],
+      howWorks:
+        "The calculator first determines the taxable amount (vehicle price minus trade-in value), then calculates sales tax. It then computes the financed amount (price + tax - down - trade-in). Finally, it applies the standard loan amortisation formula to determine the monthly payment.",
+      assumptions: [
+        "Fixed interest rate for the entire loan term.",
+        "Sales tax is applied after the trade-in credit is subtracted.",
+        "No dealer add-ons, extended warranties, or gap insurance.",
+        "No manufacturer rebates or subsidised APR offers are applied.",
+        "The vehicle depreciates immediately upon purchase but this is not modelled in the payment calculation.",
+      ],
+      commonMistakes: [
+        "Using the sticker price instead of the negotiated price.",
+        "Forgetting to account for trade-in value in the tax calculation.",
+        "Comparing loans with different terms without adjusting for the payment frequency.",
+        "Not understanding that a longer term doesn't mean it's cheaper — total interest increases.",
+        "Ignoring the impact of sales tax which can add 5-10% to the total cost.",
+        "Focusing on the monthly payment without considering the total cost of the loan.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Standard amortisation formula with tax and trade-in adjustments",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {
@@ -694,6 +760,31 @@ export const loanCalculators: CalculatorConfig[] = [
         "Promotional 0% periods and balance-transfer fees are not modelled.",
         "Issuers calculate interest daily; monthly compounding is a close approximation.",
       ],
+      howWorks:
+        "The calculator uses an iterative approach to simulate each month: it calculates the interest (current balance × monthly APR), adds it to the balance, then subtracts the payment. This process repeats until the balance reaches zero or the payment becomes insufficient to cover interest. The iteration reveals the exact payoff timeline and total interest cost.",
+      assumptions: [
+        "Interest compounds monthly at the stated APR.",
+        "No new charges are added to the card during the payoff period.",
+        "The payment amount remains constant throughout the payoff.",
+        "No balance transfer fees or promotional APRs are applied.",
+        "The APR remains fixed for the entire payoff period.",
+        "No annual fees or other charges are applied.",
+      ],
+      commonMistakes: [
+        "Paying only the minimum payment, which barely covers interest in early years.",
+        "Not understanding that interest compounds on the full balance even as you make payments.",
+        "Using the annual APR directly instead of dividing by 12 for monthly calculations.",
+        "Forgetting to include fees like balance transfer fees or annual fees in the total cost.",
+        "Assuming a payment is enough without checking that it exceeds the monthly interest charge.",
+        "Not considering the impact of promotional 0% APR periods that may expire.",
+        "Making only minimum payments while continuing to charge new purchases.",
+        "Ignoring the snowball or avalanche methods for multiple cards.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Iterative monthly interest simulation",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {
@@ -851,6 +942,31 @@ export const loanCalculators: CalculatorConfig[] = [
         "Does not order payoffs by avalanche or snowball priority.",
         "Assumes no new borrowing during the payoff period.",
       ],
+      howWorks:
+        "The calculator treats all your debts as a single 'blended' loan with an average interest rate. It then simulates each month: interest is calculated on the current balance, your payment (plus any extra) is subtracted, and the process repeats until the balance reaches zero. The comparison shows how much faster you get there with extra payments.",
+      assumptions: [
+        "A blended average interest rate represents all debts.",
+        "No new debt is added during the payoff period.",
+        "All payments are made on time each month.",
+        "The interest rate remains constant throughout the payoff.",
+        "No debt consolidation loans or balance transfers are involved.",
+        "The extra payment is applied consistently each month.",
+      ],
+      commonMistakes: [
+        "Not building a small emergency buffer before aggressively paying down debt.",
+        "Using the minimum payment amounts instead of the actual amounts being paid.",
+        "Forgetting to include all debts including small ones that can be paid off quickly.",
+        "Not accounting for balance transfer fees or promotional APR expiration.",
+        "Using the wrong interest rate (factoring in principal payments instead of APR).",
+        "Assuming extra payments are automatically applied to principal without checking.",
+        "Not considering the avalanche method (highest rate first) vs. snowball method (smallest balance first).",
+        "Stopping payments once the calculated date is reached instead of continuing to pay off remaining balances.",
+      ],
+      lastUpdated: {
+        date: "2026-07-31",
+        method: "Iterative monthly interest simulation with blended rate",
+        version: "1.0.0",
+      },
     },
     faqs: [
       {

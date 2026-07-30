@@ -73,6 +73,14 @@ export interface CalculatorContent {
   example: string;
   advantages: string[];
   limitations: string[];
+  howWorks?: string;
+  assumptions?: string[];
+  commonMistakes?: string[];
+  lastUpdated?: {
+    date: string;
+    method: string;
+    version: string;
+  };
 }
 
 export interface CalculatorConfig {
