@@ -1,12 +1,15 @@
 User-agent: *
 Allow: /
-Allow: /calculators/
-Allow: /_next/
-Disallow: /_next/static/
-Disallow: /api/
+
 Disallow: /admin/
+Disallow: /test/
+Disallow: /staging/
+Disallow: /api/
 Disallow: /*?
 Disallow: /*#
+Disallow: /*.pdf$
+Disallow: /_next/
+Disallow: /static/
 
 User-agent: Googlebot
 Allow: /
@@ -22,8 +25,4 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-User-agent: bingbot
-Allow: /
-
 Sitemap: https://moneycalc.com/sitemap.xml
-Sitemap: https://moneycalc.com/sitemap-news.xml

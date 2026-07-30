@@ -13,6 +13,8 @@ import {
   breadcrumbSchema,
   calculatorSchema,
   faqSchema,
+  generateDescription,
+  generateTitle,
   jsonLdScript,
   pageMeta,
   SITE,
@@ -29,14 +31,16 @@ export const Route = createFileRoute("/calculators/$slug")({
     if (!c) {
       return {
         meta: [
-          { title: "Calculator not found — MoneyCalc" },
+          { title: "Calculator not found - MoneyCalc" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
+    const title = generateTitle(c.name);
+    const description = generateDescription(c.name);
     return pageMeta({
-      title: c.title,
-      description: c.description,
+      title,
+      description,
       path: `/calculators/${c.slug}`,
       image: `${SITE.url}/og-image.svg`,
     });

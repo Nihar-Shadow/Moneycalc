@@ -104,7 +104,7 @@ const testimonials = [
 export const Route = createFileRoute("/")({
   head: () =>
     pageMeta({
-      title: "Free Finance Calculators",
+      title: "Free Finance Calculators - Loans, Mortgages, Investments | MoneyCalc",
       description:
         "MoneyCalc offers free, fast and accurate finance calculators for loans, mortgages, investments, retirement, savings and debt payoff.",
       path: "/",
