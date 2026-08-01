@@ -6,7 +6,7 @@ A production-ready Finance Calculator platform built to compete with Calculator.
 
 ## 🚀 Live Demo
 
-https://moneycalc.vercel.app
+[https://moneycalc.vercel.app](https://moneycalc-kiku.vercel.app/)
 
 ## 🎯 Project Goals
 
