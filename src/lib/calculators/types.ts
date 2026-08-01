@@ -81,7 +81,37 @@ export interface CalculatorContent {
     method: string;
     version: string;
   };
+  sources?: string[];
+  references?: string[];
+  author?: {
+    name: string;
+    credentials: string;
+    role: string;
+  };
+  verification?: {
+    status: "verified" | "pending";
+    verifiedBy?: string;
+    verifiedDate?: string;
+  };
+  whenToUse?: string;
+  whenNotToUse?: string;
+  tips?: string[];
+  localIntro?: Record<string, string>;
+  localExample?: Record<string, string>;
+  localTaxInfo?: Record<string, string>;
+  localAssumptions?: Record<string, string[]>;
+  localReferences?: Record<string, string[]>;
+  localFaqs?: Record<string, CalculatorFaq[]>;
 }
+
+export interface CategoryContent {
+  intro: string;
+  overview: string;
+  benefits: string[];
+  faqs: CalculatorFaq[];
+}
+
+export type ChangeFrequency = "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
 
 export interface CalculatorConfig {
   slug: string;
@@ -93,9 +123,18 @@ export interface CalculatorConfig {
   category: CalculatorCategory;
   icon: string;
   popular?: boolean;
+  indexable: boolean;
+  sitemap: boolean;
+  robots?: string;
+  priority?: number;
+  changefreq?: ChangeFrequency;
+  lastUpdated?: string;
+  schemaType?: string;
+  searchIntent?: string;
   fields: CalculatorField[];
   compute: (values: Record<string, number>, currency: CurrencyCode) => CalcResult;
   content: CalculatorContent;
   faqs: CalculatorFaq[];
   related: string[];
+  variationIndexable?: Record<string, boolean>;
 }

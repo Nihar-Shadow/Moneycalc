@@ -7,7 +7,7 @@ import {
   Scripts,
   Link,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, type ReactNode, Suspense } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -16,6 +16,14 @@ import { Footer } from "@/components/site/footer";
 import { CookieBanner } from "@/components/site/cookie-banner";
 import { Toaster } from "@/components/ui/sonner";
 import { organizationSchema, websiteSchema, SITE } from "@/lib/seo";
+
+const PRECONNECT_HREFS = [
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com",
+  "https://www.googletagmanager.com",
+  "https://www.google-analytics.com",
+  "https://www.clarity.co",
+];
 
 function NotFoundComponent() {
   return (
@@ -40,6 +48,7 @@ function NotFoundComponent() {
             Go home
           </Link>
         </div>
+        <div className="mt-6 text-xs text-muted-foreground">Last updated: July 31, 2026</div>
       </div>
     </div>
   );
@@ -97,6 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: SITE.image },
       { property: "og:image:width", content: String(SITE.imageWidth) },
       { property: "og:image:height", content: String(SITE.imageHeight) },
+      { property: "og:image:alt", content: "MoneyCalc - Free Finance Calculators" },
       { property: "og:site_name", content: SITE.name },
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -104,6 +114,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: `${SITE.name} — ${SITE.tagline}` },
       { name: "twitter:description", content: SITE.description },
       { name: "twitter:image", content: SITE.image },
+      { name: "twitter:image:alt", content: "MoneyCalc - Free Finance Calculators" },
       { name: "theme-color", content: "#2563EB" },
       { name: "msapplication-TileColor", content: "#2563EB" },
       { name: "format-detection", content: "telephone=no" },
@@ -112,11 +123,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/logo.svg", type: "image/svg+xml" },
       { rel: "alternate", hrefLang: "en", href: SITE.url },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      ...PRECONNECT_HREFS.map((href) => ({ rel: "preconnect", href })),
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" as const },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap",
       },
     ],
     scripts: [
@@ -128,6 +139,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify(websiteSchema()),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE.name,
+          url: SITE.url,
+          potentialAction: {
+            "@type": "SearchAction",
+            target: `${SITE.url}/calculators?q={search_term_string}`,
+            "query-input": "required name=search_term_string",
+          },
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -138,11 +163,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body
+        className="antialiased"
+        suppressHydrationWarning
+      >
         {children}
         <Scripts />
       </body>
@@ -163,8 +194,9 @@ function RootComponent() {
       </a>
       <Navbar />
       <main id="main-content">
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       <CookieBanner />

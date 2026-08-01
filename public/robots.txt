@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 
+# Disallow sensitive or administrative paths
 Disallow: /admin/
 Disallow: /test/
 Disallow: /staging/
@@ -11,18 +12,45 @@ Disallow: /*.pdf$
 Disallow: /_next/
 Disallow: /static/
 
+# Allow important pages that should be indexed
+Allow: /about
+Allow: /contact
+Allow: /privacy-policy
+Allow: /terms
+Allow: /disclaimer
+Allow: /cookies
+Allow: /sitemap
+
+# Googlebot specific rules
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
+# Bingbot specific rules
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
+# Other crawlers
 User-agent: Slurp
 Allow: /
 
 User-agent: DuckDuckBot
 Allow: /
 
+User-agent: bingbot
+Allow: /
+
+User-agent: Googlebot-InappTest
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Sitemap location
 Sitemap: https://moneycalc.com/sitemap.xml
+
+# AdSense ad verification (if needed)
+User-agent: AdsBot-Google
+Allow: /
+Crawl-delay: 2

@@ -10,12 +10,74 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R404RouteImport } from './routes/404'
+import { Route as R500RouteImport } from './routes/500'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as OfflineRouteImport } from './routes/offline'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as SitemapRouteImport } from './routes/sitemap'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
 import { Route as CalculatorsSlugRouteImport } from './routes/calculators.$slug'
+import { Route as CategoriesCategoryRouteImport } from './routes/categories.$category'
+import { Route as CalculatorsSlugVariationRouteImport } from './routes/calculators.$slug.$variation'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R500Route = R500RouteImport.update({
+  id: '/500',
+  path: '/500',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OfflineRoute = OfflineRouteImport.update({
+  id: '/offline',
+  path: '/offline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapRoute = SitemapRouteImport.update({
+  id: '/sitemap',
+  path: '/sitemap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalculatorsIndexRoute = CalculatorsIndexRouteImport.update({
@@ -28,34 +90,138 @@ const CalculatorsSlugRoute = CalculatorsSlugRouteImport.update({
   path: '/calculators/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriesCategoryRoute = CategoriesCategoryRouteImport.update({
+  id: '/categories/$category',
+  path: '/categories/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorsSlugVariationRoute =
+  CalculatorsSlugVariationRouteImport.update({
+    id: '/$variation',
+    path: '/$variation',
+    getParentRoute: () => CalculatorsSlugRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/calculators/$slug': typeof CalculatorsSlugRoute
+  '/404': typeof R404Route
+  '/500': typeof R500Route
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/offline': typeof OfflineRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sitemap': typeof SitemapRoute
+  '/terms': typeof TermsRoute
+  '/calculators/$slug': typeof CalculatorsSlugRouteWithChildren
+  '/categories/$category': typeof CategoriesCategoryRoute
   '/calculators/': typeof CalculatorsIndexRoute
+  '/calculators/$slug/$variation': typeof CalculatorsSlugVariationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/calculators/$slug': typeof CalculatorsSlugRoute
+  '/404': typeof R404Route
+  '/500': typeof R500Route
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/offline': typeof OfflineRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sitemap': typeof SitemapRoute
+  '/terms': typeof TermsRoute
+  '/calculators/$slug': typeof CalculatorsSlugRouteWithChildren
+  '/categories/$category': typeof CategoriesCategoryRoute
   '/calculators': typeof CalculatorsIndexRoute
+  '/calculators/$slug/$variation': typeof CalculatorsSlugVariationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/calculators/$slug': typeof CalculatorsSlugRoute
+  '/404': typeof R404Route
+  '/500': typeof R500Route
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/offline': typeof OfflineRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sitemap': typeof SitemapRoute
+  '/terms': typeof TermsRoute
+  '/calculators/$slug': typeof CalculatorsSlugRouteWithChildren
+  '/categories/$category': typeof CategoriesCategoryRoute
   '/calculators/': typeof CalculatorsIndexRoute
+  '/calculators/$slug/$variation': typeof CalculatorsSlugVariationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/calculators/$slug' | '/calculators/'
+  fullPaths:
+    | '/'
+    | '/404'
+    | '/500'
+    | '/about'
+    | '/contact'
+    | '/cookies'
+    | '/disclaimer'
+    | '/offline'
+    | '/privacy-policy'
+    | '/sitemap'
+    | '/terms'
+    | '/calculators/$slug'
+    | '/categories/$category'
+    | '/calculators/'
+    | '/calculators/$slug/$variation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/calculators/$slug' | '/calculators'
-  id: '__root__' | '/' | '/calculators/$slug' | '/calculators/'
+  to:
+    | '/'
+    | '/404'
+    | '/500'
+    | '/about'
+    | '/contact'
+    | '/cookies'
+    | '/disclaimer'
+    | '/offline'
+    | '/privacy-policy'
+    | '/sitemap'
+    | '/terms'
+    | '/calculators/$slug'
+    | '/categories/$category'
+    | '/calculators'
+    | '/calculators/$slug/$variation'
+  id:
+    | '__root__'
+    | '/'
+    | '/404'
+    | '/500'
+    | '/about'
+    | '/contact'
+    | '/cookies'
+    | '/disclaimer'
+    | '/offline'
+    | '/privacy-policy'
+    | '/sitemap'
+    | '/terms'
+    | '/calculators/$slug'
+    | '/categories/$category'
+    | '/calculators/'
+    | '/calculators/$slug/$variation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CalculatorsSlugRoute: typeof CalculatorsSlugRoute
+  R404Route: typeof R404Route
+  R500Route: typeof R500Route
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
+  DisclaimerRoute: typeof DisclaimerRoute
+  OfflineRoute: typeof OfflineRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  SitemapRoute: typeof SitemapRoute
+  TermsRoute: typeof TermsRoute
+  CalculatorsSlugRoute: typeof CalculatorsSlugRouteWithChildren
+  CategoriesCategoryRoute: typeof CategoriesCategoryRoute
   CalculatorsIndexRoute: typeof CalculatorsIndexRoute
 }
 
@@ -66,6 +232,76 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/500': {
+      id: '/500'
+      path: '/500'
+      fullPath: '/500'
+      preLoaderRoute: typeof R500RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offline': {
+      id: '/offline'
+      path: '/offline'
+      fullPath: '/offline'
+      preLoaderRoute: typeof OfflineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap': {
+      id: '/sitemap'
+      path: '/sitemap'
+      fullPath: '/sitemap'
+      preLoaderRoute: typeof SitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calculators/': {
@@ -82,12 +318,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/categories/$category': {
+      id: '/categories/$category'
+      path: '/categories/$category'
+      fullPath: '/categories/$category'
+      preLoaderRoute: typeof CategoriesCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculators/$slug/$variation': {
+      id: '/calculators/$slug/$variation'
+      path: '/$variation'
+      fullPath: '/calculators/$slug/$variation'
+      preLoaderRoute: typeof CalculatorsSlugVariationRouteImport
+      parentRoute: typeof CalculatorsSlugRoute
+    }
   }
 }
 
+interface CalculatorsSlugRouteChildren {
+  CalculatorsSlugVariationRoute: typeof CalculatorsSlugVariationRoute
+}
+
+const CalculatorsSlugRouteChildren: CalculatorsSlugRouteChildren = {
+  CalculatorsSlugVariationRoute: CalculatorsSlugVariationRoute,
+}
+
+const CalculatorsSlugRouteWithChildren = CalculatorsSlugRoute._addFileChildren(
+  CalculatorsSlugRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CalculatorsSlugRoute: CalculatorsSlugRoute,
+  R404Route: R404Route,
+  R500Route: R500Route,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
+  DisclaimerRoute: DisclaimerRoute,
+  OfflineRoute: OfflineRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  SitemapRoute: SitemapRoute,
+  TermsRoute: TermsRoute,
+  CalculatorsSlugRoute: CalculatorsSlugRouteWithChildren,
+  CategoriesCategoryRoute: CategoriesCategoryRoute,
   CalculatorsIndexRoute: CalculatorsIndexRoute,
 }
 export const routeTree = rootRouteImport

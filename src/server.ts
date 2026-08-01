@@ -18,6 +18,47 @@ async function getServerEntry(): Promise<ServerEntry> {
   return serverEntryPromise;
 }
 
+async function applySecurityHeaders(response: Response): Promise<Response> {
+  const headers = new Headers(response.headers);
+
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("X-XSS-Protection", "1; mode=block");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=()");
+  
+  const isHttps = response.url.startsWith("https://");
+  
+  if (isHttps) {
+    headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  }
+
+  const cacheControl = getCacheControl(response.url);
+  headers.set("Cache-Control", cacheControl);
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+function getCacheControl(url: string): string {
+  if (url.includes("/calculators/") && url.match(/\/calculators\/[^/]+$/)) {
+    return "public, max-age=3600, stale-while-revalidate=600";
+  }
+  if (url.startsWith("/_next") || url.includes(".js") || url.includes(".css")) {
+    return "public, max-age=31536000, immutable";
+  }
+  if (url.match(/\.(png|jpg|jpeg|gif|svg|webp|ico)$/)) {
+    return "public, max-age=31536000, immutable";
+  }
+  if (url.includes("prerender") || url.includes("render")) {
+    return "no-cache";
+  }
+  return "public, max-age=0, s-maxage=60, stale-while-revalidate=30";
+}
+
 // h3 swallows in-handler throws into a normal 500 Response with body
 // {"unhandled":true,"message":"HTTPError"} — try/catch alone never fires for those.
 async function normalizeCatastrophicSsrResponse(response: Response): Promise<Response> {
@@ -49,12 +90,13 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const securedResponse = await applySecurityHeaders(response);
+      return await normalizeCatastrophicSsrResponse(securedResponse);
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {
         status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" },
+        headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-cache" },
       });
     }
   },
