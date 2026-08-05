@@ -48,7 +48,7 @@ User-agent: Googlebot-Mobile
 Allow: /
 
 # Sitemap location
-Sitemap: https://moneycalc.com/sitemap.xml
+Sitemap: https://moneycalc-kiku.vercel.app/sitemap.xml
 
 # AdSense ad verification (if needed)
 User-agent: AdsBot-Google

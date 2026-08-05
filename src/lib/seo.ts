@@ -1,10 +1,15 @@
+export const SITE_URL =
+  typeof process !== "undefined"
+    ? process.env.PUBLIC_SITE_URL ?? "https://moneycalc-kiku.vercel.app"
+    : "https://moneycalc-kiku.vercel.app";
+
 export const SITE = {
   name: "MoneyCalc",
   tagline: "Free Finance Calculators for Smarter Money Decisions",
   description:
     "MoneyCalc offers free, fast and accurate finance calculators for loans, mortgages, investments, retirement, savings and debt payoff.",
-  url: "https://moneycalc.com",
-  image: "https://moneycalc.com/og-image.svg",
+  url: SITE_URL,
+  image: `${SITE_URL}/og-image.svg`,
   imageWidth: 1200,
   imageHeight: 630,
 };
@@ -411,7 +416,7 @@ export function generateDescription(name: string): string {
     "Investment Calculator":
       "Project investment growth and calculate inflation-adjusted returns. See how fees impact your portfolio. Plan your financial future.",
     "Savings Calculator":
-      "Calculate savings growth and time to reach goals. Compare high-yield accounts. Track your progress to financial targets.",
+      "Calculate savings growth and time to reach goals. Compare high-yield savings accounts. Track your progress to financial targets.",
     "Retirement Calculator":
       "Project your retirement nest egg and sustainable income. Test different contribution rates. Plan for financial security.",
     "Inflation Calculator":
